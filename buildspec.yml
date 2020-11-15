@@ -2,15 +2,20 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-      nodejs: 10
     commands:
-      - npm install serverless -g
-      - npm install
+    - npm install --silent --no-progress -g npm
+    - npm install --silent --no-progress -g serverless
+    - cp serverless.yml.example serverless.yml
+  pre_build:
+    commands:
+    - npm install --silent --no-progress
   build:
     commands:
-      - sls deploy -s dev
+    - mkdir -p target/dev
+    - serverless deploy --package target/dev --stage dev -v -r us-east-2
+
 artifacts:
   files:
-    - '**/*'
-  base-directory: .serverless
+  - target/dev/*
+  - serverless.yml
+  - deploy.sh
