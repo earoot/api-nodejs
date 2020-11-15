@@ -3,18 +3,16 @@ version: 0.2
 phases:
   install:
     commands:
-    - cp serverless.yml.example serverless.yml
-    - echo "Hola"
-    - ls
     - npm install --silent --no-progress -g npm
     - npm install --silent --no-progress -g serverless
+    - cp serverless.yml.example serverless.yml
   pre_build:
     commands:
     - npm install --silent --no-progress
   build:
     commands:
     - mkdir -p target/dev
-    - serverless deploy --package target/dev --stage dev -r us-east-2
+    - serverless package --package target/dev --stage dev -v -r us-east-2
 
 artifacts:
   files:
