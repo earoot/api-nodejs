@@ -4,6 +4,8 @@ phases:
   pre_build:
     commands:
       - npm install
+      - npm install -g serverless
+      - cp serverless.yml.example serverless.yml
   build:
     commands:
-      - aws cloudformation package --template template.yml --s3-bucket $S3_BUCKET --output-template template-export.yml
+      - serverless deploy

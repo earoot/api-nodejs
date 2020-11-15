@@ -1,0 +1,24 @@
+service: challenge-api
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: us-east-2
+  memorySize: 128
+functions:
+  app:
+    handler: ./app.handler
+    environment:
+      JWT_SECRET: '4fc133c44a7eb1a6b70c74a25131bb25'
+      AK_ID: ''
+      SA_KEY: ''
+      REGION__: 'us-east-2'
+    events:
+      - http:
+          path: /
+          method: ANY
+          cors: true
+      - http:
+          path: /{proxy+}
+          method: ANY
+          cors: true
