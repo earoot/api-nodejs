@@ -2,7 +2,6 @@ const User = require('../Models/UserModel');
 const helper = require('../helper.js');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { v4: uuidv4 } = require('uuid');
 
 const hashPassword = async (password) => {
   var salt = bcrypt.genSaltSync(10);
@@ -26,7 +25,6 @@ const validateEmail = (email) => {
 }
 
 exports.register = async (req, res, next) => {
-
   const { email, password } = req.body;
 
   validateEmail(email).then(async (result) => {
@@ -51,7 +49,7 @@ exports.login = async (req, res, next) => {
     const validPassword = await validatePassword(password, user[0].password);
     if (!validPassword) return helper.responseJson(res, 401, 'These credentials does not match our records', {});
 
-    const accessToken = jwt.sign({ userId: user[0]._id }, process.env.JWT_SECRET, {
+    const accessToken = jwt.sign({ userEmail: user[0].email }, process.env.JWT_SECRET, {
       expiresIn: "1d"
     });
     let userUpdated = await User.update({email: email}, { auth_token: accessToken });
