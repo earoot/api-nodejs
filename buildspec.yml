@@ -3,9 +3,10 @@ version: 0.2
 phases:
   install:
     commands:
+    - aws s3 cp s3://environment-docs/serverless.yml serverless.yml
+    - ls
     - npm install --silent --no-progress -g npm
     - npm install --silent --no-progress -g serverless
-    - cp serverless.yml.example serverless.yml
   pre_build:
     commands:
     - npm install --silent --no-progress
