@@ -1,11 +1,14 @@
 version: 0.2
 
 phases:
+  install:
+    commands:
+    - npm install --silent --no-progress -g npm
+    - npm install --silent --no-progress -g serverless
   pre_build:
     commands:
-      - npm install
-      - npm install -g serverless
-      - cp serverless.yml.example serverless.yml
+    - npm install --silent --no-progress
   build:
     commands:
-      - serverless deploy
+    - mkdir -p target/dev
+    - serverless package --package target/dev --stage dev -v -r us-east-2
