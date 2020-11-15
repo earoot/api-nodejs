@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 
 //Controllers
-const userController = require('../Controllers/userController');
+const userController = require('../Controllers/UserController');
 
 //Models
-const User = require('../Models/userModel');
+const User = require('../Models/UserModel');
 
 // const jwt = require('jsonwebtoken');
 // const helper = require('../helper.js');

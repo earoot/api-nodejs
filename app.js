@@ -3,7 +3,7 @@ const express = require('express');
 const dynamoose = require("dynamoose");
 const config = require('dotenv').config();
 const cors = require('cors');
-const routes = require('./routes/routes.js');
+const routes = require('./Routes/Routes.js');
 
 const app = express();
 const port = 3000;
@@ -22,8 +22,8 @@ app.use(express.json());
 
 app.use('/', routes);
 
-// app.listen(port, () => {
-//   console.log(`listening at http://localhost:${port}`)
-// });
+app.listen(port, () => {
+  console.log(`listening at http://localhost:${port}`)
+});
 
-module.exports.handler = serverless(app);
+// module.exports.handler = serverless(app);

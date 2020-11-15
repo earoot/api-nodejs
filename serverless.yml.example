@@ -9,10 +9,10 @@ functions:
   app:
     handler: ./app.handler
     environment:
-      JWT_SECRET: '4fc133c44a7eb1a6b70c74a25131bb25'
+      JWT_SECRET: ''
       AK_ID: ''
       SA_KEY: ''
-      REGION__: 'us-east-2'
+      REGION__: ''
     events:
       - http:
           path: /
